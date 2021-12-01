@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 class RutasProvider {
   Future<List<Ruta>> getRutas() async {
     List<Ruta> lista = [];
+    print(lista.length);
     final respuesta = await http.get(
         Uri.parse('http://192.168.23.223/GestionAPP/index.php/Gestion/rutas'));
     List body = jsonDecode(respuesta.body);
@@ -13,7 +14,6 @@ class RutasProvider {
     body.forEach((element) {
       lista.add(Ruta.fromJson(jsonEncode(element)));
     });
-    print(lista[1].active);
     return lista;
   }
 }
