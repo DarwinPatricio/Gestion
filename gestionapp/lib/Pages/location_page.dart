@@ -8,9 +8,10 @@ class LocationPage extends StatefulWidget {
 class _LocationPageState extends State<LocationPage> {
   @override
   Widget build(BuildContext context) {
+    var appBarTitulo = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
-        title: Text(''),
+        title: Text(appBarTitulo),
       ),
       body: Container(),
     );

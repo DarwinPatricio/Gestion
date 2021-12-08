@@ -8,9 +8,10 @@ class InfoPage extends StatefulWidget {
 class _InfoPageState extends State<InfoPage> {
   @override
   Widget build(BuildContext context) {
+    var appBarTitulo = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
-        title: Text(''),
+        title: Text(appBarTitulo),
       ),
       body: Container(),
     );
