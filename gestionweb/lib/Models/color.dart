@@ -22,8 +22,8 @@ class ColorM {
       );
 
   Map<String, dynamic> toMap() => {
-        "id": id,
+        "id": int.parse(id),
         "color": color,
-        "active": active,
+        "active": int.parse(active),
       };
 }

@@ -107,7 +107,7 @@ class ShowColors extends StatefulWidget {
 }
 
 class _ShowColorsState extends State<ShowColors> {
-  String _coloractivo = "";
+  late ColorM _coloractivo;
   ColorProvider colorProvider = ColorProvider();
   @override
   Widget build(BuildContext context) {
@@ -137,7 +137,8 @@ class _ShowColorsState extends State<ShowColors> {
                         child: LinearProgressIndicator(),
                       );
                     } else {
-                      List<DropdownMenuItem<String>> lista = [];
+                      _coloractivo = snapshot.data![0];
+                      List<DropdownMenuItem<ColorM>> lista = [];
                       snapshot.data!.forEach((element) {
                         lista.add(DropdownMenuItem(
                             child: Row(
@@ -156,16 +157,15 @@ class _ShowColorsState extends State<ShowColors> {
                                 )
                               ],
                             ),
-                            value: element.color));
+                            value: element));
                       });
-                      return DropdownButton<String>(
-                        value: _coloractivo == ""
-                            ? snapshot.data![0].color
-                            : _coloractivo,
+                      return DropdownButton<ColorM>(
+                        value: _coloractivo,
                         items: lista,
                         onChanged: (valor) {
                           setState(() {
-                            _coloractivo = valor.toString();
+                            _coloractivo = valor!;
+                            colorProvider.setColor(_coloractivo);
                           });
                         },
                       );

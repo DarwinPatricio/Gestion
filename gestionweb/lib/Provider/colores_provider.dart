@@ -11,10 +11,22 @@ class ColorProvider {
     final respuesta = await http.get(Uri.parse(
         'https://falcondptoinformatica.synology.me/GestionDD/index.php/gestion/colores'));
     List body = jsonDecode(respuesta.body);
-    print(body);
+    //print(body);
     body.forEach((element) {
       lista.add(ColorM.fromJson(jsonEncode(element)));
     });
     return lista;
+  }
+
+  Future<bool> setColor(ColorM color) async {
+    print(color.toJson());
+    final respuesta = await http.put(
+        Uri.parse('http://localhost/gestionapp/index.php/gestion/colores'),
+        headers: <String, String>{
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: json.encode(color));
+    print(respuesta.body);
+    return respuesta.statusCode == 200;
   }
 }
