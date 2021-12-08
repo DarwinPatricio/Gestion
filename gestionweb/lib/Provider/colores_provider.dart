@@ -9,7 +9,7 @@ class ColorProvider {
     List<ColorM> lista = [];
     print(lista.length);
     final respuesta = await http.get(Uri.parse(
-        'http://192.168.23.223/GestionAPP/index.php/Gestion/colores'));
+        'https://falcondptoinformatica.synology.me/GestionDD/index.php/gestion/colores'));
     List body = jsonDecode(respuesta.body);
     print(body);
     body.forEach((element) {
